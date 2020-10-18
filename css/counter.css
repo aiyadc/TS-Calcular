@@ -1,0 +1,144 @@
+* {
+    box-sizing: border-box;
+}
+
+
+/* 不能选中，防止连续点击出现蓝色区域 */
+
+body {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+/* 整个计算机（包括历史记录） */
+
+#calculater {
+    overflow: hidden;
+    border: 1px solid black;
+    height: 420px;
+    width: 650px;
+}
+
+
+/* 计算器模块 */
+
+#tool {
+    float: left;
+}
+
+
+/* 计算器头部 */
+
+#toolHead {
+    height: 119px;
+    width: 452px;
+    background-color: azure;
+}
+
+
+/* 计算器中的操作及结果显示部分 */
+
+#operaShow {
+    padding: 10px;
+    text-align: right;
+}
+
+
+/* 键盘部分 */
+
+#keyboard {
+    height: 301px;
+    width: 452px;
+    font-size: 0;
+    position: relative;
+    /* background: url("https://static.szlcsc.com/ecp/public/img/lcsc_logo_new.743e70f8.png");
+    background-repeat: no-repeat;
+    background-position: center; */
+}
+
+
+/* 历史记录模块 */
+
+#history {
+    overflow: hidden;
+    height: 420px;
+    position: relative;
+    background-color: cornsilk;
+}
+
+
+/* 存放历史记录的ul元素 */
+
+#record {
+    height: 332px;
+    word-wrap: break-word;
+    overflow: auto;
+}
+
+#history>p {
+    line-height: 30px;
+    text-align: center;
+}
+
+#history>button {
+    cursor: pointer;
+}
+
+#keyboard>div {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    font-size: 14px;
+    width: 113px;
+    height: 43px;
+    line-height: 43px;
+    margin: 0;
+    border: 1px solid #eeeeee;
+}
+
+#keyboard>div:hover {
+    box-shadow: cadetblue;
+    border: 1px solid #00bbff;
+}
+
+#keyboard>div:active {
+    background-color: coral;
+}
+
+#operaShow>p {
+    margin: 10px;
+}
+
+#history>button {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: transparent;
+    font-weight: bold;
+}
+
+.title {
+    line-height: 30px;
+    text-align: center;
+    margin: 0;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.fin-result {
+    font-size: 24px;
+}
+
+#record {
+    height: 332px;
+    word-wrap: break-word;
+    overflow: auto;
+}
+
+.special-key {
+    background-color: #FFA488;
+}

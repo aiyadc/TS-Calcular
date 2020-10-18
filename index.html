@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/counter.css">
+</head>
+
+<body>
+    <div id="calculater">
+        <div id="tool">
+            <div id="toolHead">
+                <p class="title">计算器</p>
+                <div id="operaShow">
+                    <p class="opera">0</p>
+                    <p class="fin-result"></p>
+                </div>
+            </div>
+            <div id="keyboard">
+                <div>n!</div>
+                <div>Π</div>
+                <div>CE</div>
+                <div>DEL</div>
+
+                <div>n<sup>m</sup></div>
+                <div>log</div>
+                <div>ln</div>
+                <div>√</div>
+
+                <div>(</div>
+                <div>)</div>
+                <div>%</div>
+                <div>=</div>
+
+                <div>7</div>
+                <div>8</div>
+                <div>9</div>
+                <div>÷</div>
+
+                <div>4</div>
+                <div>5</div>
+                <div>6</div>
+                <div>x</div>
+
+                <div>1</div>
+                <div>2</div>
+                <div>3</div>
+                <div>-</div>
+
+                <div>Random</div>
+                <div>0</div>
+                <div>.</div>
+                <div>+</div>
+            </div>
+        </div>
+        <div id="history">
+            <p class="title">历史记录</p>
+            <ul id="record"></ul>
+            <button onclick="keys.clearHistory()">清除记录</button>
+        </div>
+    </div>
+    <script src="./js/mycounter.js"></script>
+</body>
+
+</html>
