@@ -114,15 +114,15 @@ class Keys {
     }
 }
 // 运算符
-const opera: string[] = ["+", "-", "x", "÷", "%", "="];
+const opera = ["+", "-", "x", "÷", "%", "="];
 // 单对象功能性按键，输入之后立即将结果显示到result中；
-const singleOpera: string[] = ["=", "n!", "√", "log", "ln"];
+const singleOpera = ["=", "n!", "√", "log", "ln"];
 // 双对象功能性按键，输入之后直接放到input中，待另一个对象完成再显示结果；
-const doubleOpera: string[] = ["nm", "^"];
+const doubleOpera = ["nm", "^"];
 // 功能性符号，添加到这里边的元素点击时不会或间接显示到输入中；
-const tool: string[] = ["CE", "DEL", "Random"];
+const tool = ["CE", "DEL", "Random"];
 // 数字和括号输入
-const nums: string[] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "(", ")", "Π", "e", "."];
+const nums = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "(", ")", "Π", "e", "."];
 // 创建键盘实例
 const keys = new Keys(opera, singleOpera, doubleOpera, tool, nums);
 // 判断是否为新一轮计算，是则清空输入信息；
@@ -191,8 +191,16 @@ keyboard!.addEventListener('click', (ev: any) => {
     else if (keys.opera.indexOf(key) !== -1) {
         // 如果没有任何输入或者只有“（ ”时，默认在输入前加 “0”；
         if (input === "" || input === "(") input += "0";
-        // 判断前一个是否也输入了运算符号,是则用当前运算符代替上一个运算符；
-        input = keys.opera.indexOf(prekey) === -1 ? input + key : input.slice(0, length) + key;
+        // 判断前一个是否也输入了运算符号,是则用当前运算符代替上一个运算符,若前一个是等号则给等号前面的输入加上括号；
+        if(keys.opera.indexOf(prekey) === -1){
+            input = input+key
+        }else{
+            if(prekey === '='){
+                input ='('+ input.slice(0, length)+')' + key
+            }
+            else input = input.slice(0, length) + key;
+        }
+        // input = keys.opera.indexOf(prekey) === -1 ? input + key : input.slice(0, length) + key;
         showInput.innerText = input;
         // 计算已输入字符的计算结果显示到result中
         // 获取与要转换的字符匹配的字符的数组，并进行格式化：
@@ -225,7 +233,7 @@ keyboard!.addEventListener('click', (ev: any) => {
         showResult.innerText = result;
         // 如果输入的键是“=”：
         if (key === "=") {
-            isnew = 1;
+            // isnew = 1;
             if (ul)
                 keys.addHistory(input + result, ul);
         }
@@ -234,7 +242,7 @@ keyboard!.addEventListener('click', (ev: any) => {
     }
     // 如果输入的键是功能按键（属于keys.singleOpera数组 或 tool数组）：
     else {
-        if (tool.indexOf(key) !== -1 || keys.getSymLeft(input + key, key) !== "") {
+        if (keys.tool.indexOf(key) !== -1 || keys.getSymLeft(input + key, key) !== "") {
             let symLeft: string;
             switch (key) {
                 // 以下匹配tool数组中的符号

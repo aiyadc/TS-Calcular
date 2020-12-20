@@ -188,8 +188,18 @@ keyboard.addEventListener('click', (ev) => {
         // 如果没有任何输入或者只有“（ ”时，默认在输入前加 “0”；
         if (input === "" || input === "(")
             input += "0";
-        // 判断前一个是否也输入了运算符号,是则用当前运算符代替上一个运算符；
-        input = keys.opera.indexOf(prekey) === -1 ? input + key : input.slice(0, length) + key;
+        // 判断前一个是否也输入了运算符号,是则用当前运算符代替上一个运算符,若前一个是等号则给等号前面的输入加上括号；
+        if (keys.opera.indexOf(prekey) === -1) {
+            input = input + key;
+        }
+        else {
+            if (prekey === '=') {
+                input = '(' + input.slice(0, length) + ')' + key;
+            }
+            else
+                input = input.slice(0, length) + key;
+        }
+        // input = keys.opera.indexOf(prekey) === -1 ? input + key : input.slice(0, length) + key;
         showInput.innerText = input;
         // 计算已输入字符的计算结果显示到result中
         // 获取与要转换的字符匹配的字符的数组，并进行格式化：
@@ -222,7 +232,7 @@ keyboard.addEventListener('click', (ev) => {
         showResult.innerText = result;
         // 如果输入的键是“=”：
         if (key === "=") {
-            isnew = 1;
+            // isnew = 1;
             if (ul)
                 keys.addHistory(input + result, ul);
         }
@@ -231,7 +241,7 @@ keyboard.addEventListener('click', (ev) => {
     }
     // 如果输入的键是功能按键（属于keys.singleOpera数组 或 tool数组）：
     else {
-        if (tool.indexOf(key) !== -1 || keys.getSymLeft(input + key, key) !== "") {
+        if (keys.tool.indexOf(key) !== -1 || keys.getSymLeft(input + key, key) !== "") {
             let symLeft;
             switch (key) {
                 // 以下匹配tool数组中的符号
