@@ -7,4 +7,4 @@ A calcular follow win10 coded by TypeScript.
 下载之后直接运行index.html即可，修改文件js逻辑可以修改/ts/myCounter.ts 
 
 ## 图示
-[!TSC](./assets/tsc.png)  
+![TSC](./assets/tsc.png)  
